@@ -1,4 +1,6 @@
-﻿using CommerceApp.Persistence.Context;
+﻿using CommerceApp.Application.Interfaces.Repositories;
+using CommerceApp.Persistence.Context;
+using CommerceApp.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,10 @@ namespace CommerceApp.Persistence
         public static IServiceCollection AddPersistence(this IServiceCollection services,IConfiguration configuration)
         {
             services.AddDbContext<BaseDbContext>(opt=>opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+            services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
+
 
             return services;
         }
