@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -16,10 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\Core\CommerceApp.Mapper\CommerceApp.Mapper.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CommerceApp.Persistence\CommerceApp.Persistence.csproj" />
   </ItemGroup>
 

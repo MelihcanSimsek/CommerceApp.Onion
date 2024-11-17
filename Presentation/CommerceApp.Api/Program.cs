@@ -1,4 +1,6 @@
 using CommerceApp.Persistence;
+using CommerceApp.Application;
+using CommerceApp.Mapper;
 
 
 namespace CommerceApp.Api
@@ -22,6 +24,8 @@ namespace CommerceApp.Api
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json",optional:true);
 
             builder.Services.AddPersistence(builder.Configuration);
+            builder.Services.AddApplication();
+            builder.Services.AddCustomMapper();
 
             var app = builder.Build();
 
