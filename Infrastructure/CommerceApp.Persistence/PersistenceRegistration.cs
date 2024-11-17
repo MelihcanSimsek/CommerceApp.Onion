@@ -1,6 +1,8 @@
 ﻿using CommerceApp.Application.Interfaces.Repositories;
+using CommerceApp.Application.Interfaces.UnitOfWorks;
 using CommerceApp.Persistence.Context;
 using CommerceApp.Persistence.Repositories;
+using CommerceApp.Persistence.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +23,7 @@ namespace CommerceApp.Persistence
             services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }
