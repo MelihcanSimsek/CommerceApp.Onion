@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CommerceApp.Application.Exceptions;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace CommerceApp.Application
         {
             var assembly = Assembly.GetExecutingAssembly();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
-
+            services.AddTransient<ExceptionMiddleware>();
+            
             return services;
         }
     }

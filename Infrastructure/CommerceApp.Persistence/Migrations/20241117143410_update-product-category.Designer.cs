@@ -4,6 +4,7 @@ using CommerceApp.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommerceApp.Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241117143410_update-product-category")]
+    partial class updateproductcategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,23 +51,23 @@ namespace CommerceApp.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 420, DateTimeKind.Local).AddTicks(6202),
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 76, DateTimeKind.Local).AddTicks(3867),
                             IsDeleted = false,
-                            Name = "Music, Toys & Garden"
+                            Name = "Shoes, Sports & Industrial"
                         },
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 420, DateTimeKind.Local).AddTicks(6286),
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 76, DateTimeKind.Local).AddTicks(3977),
                             IsDeleted = false,
-                            Name = "Toys & Outdoors"
+                            Name = "Music, Computers & Outdoors"
                         },
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 420, DateTimeKind.Local).AddTicks(6302),
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 76, DateTimeKind.Local).AddTicks(3994),
                             IsDeleted = true,
-                            Name = "Industrial & Beauty"
+                            Name = "Tools, Computers & Tools"
                         });
                 });
 
@@ -100,7 +103,7 @@ namespace CommerceApp.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 420, DateTimeKind.Local).AddTicks(7924),
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 76, DateTimeKind.Local).AddTicks(7408),
                             IsDeleted = false,
                             Name = "Electronics",
                             ParentId = 0,
@@ -109,7 +112,7 @@ namespace CommerceApp.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 420, DateTimeKind.Local).AddTicks(7927),
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 76, DateTimeKind.Local).AddTicks(7410),
                             IsDeleted = false,
                             Name = "Foods",
                             ParentId = 0,
@@ -118,7 +121,7 @@ namespace CommerceApp.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 420, DateTimeKind.Local).AddTicks(7928),
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 76, DateTimeKind.Local).AddTicks(7429),
                             IsDeleted = false,
                             Name = "Computer",
                             ParentId = 1,
@@ -127,7 +130,7 @@ namespace CommerceApp.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 420, DateTimeKind.Local).AddTicks(7930),
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 76, DateTimeKind.Local).AddTicks(7431),
                             IsDeleted = false,
                             Name = "Meat",
                             ParentId = 2,
@@ -171,28 +174,28 @@ namespace CommerceApp.Persistence.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 422, DateTimeKind.Local).AddTicks(4653),
-                            Description = "Sint illum dolor vero atque id et quia at aut.",
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 78, DateTimeKind.Local).AddTicks(5244),
+                            Description = "Quo et aut est at deserunt maiores dolor eum voluptatibus.",
                             IsDeleted = false,
-                            Title = "Ut."
+                            Title = "Rem."
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 3,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 422, DateTimeKind.Local).AddTicks(4798),
-                            Description = "Perspiciatis odit repudiandae officiis molestias deleniti repellat.",
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 78, DateTimeKind.Local).AddTicks(5399),
+                            Description = "Cumque quia sint quasi delectus et veniam.",
                             IsDeleted = true,
-                            Title = "Voluptatem molestiae."
+                            Title = "Molestiae nihil."
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 4,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 422, DateTimeKind.Local).AddTicks(4842),
-                            Description = "Asperiores possimus in ad sequi.",
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 78, DateTimeKind.Local).AddTicks(5446),
+                            Description = "Deserunt qui nobis voluptas voluptas.",
                             IsDeleted = false,
-                            Title = "Vitae ex optio."
+                            Title = "Quis earum ut."
                         });
                 });
 
@@ -240,23 +243,23 @@ namespace CommerceApp.Persistence.Migrations
                         {
                             Id = 1,
                             BrandId = 1,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 425, DateTimeKind.Local).AddTicks(1945),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-                            Discount = 4.97m,
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 81, DateTimeKind.Local).AddTicks(2889),
+                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+                            Discount = 6.04m,
                             IsDeleted = false,
-                            Price = 55.31m,
-                            Title = "Tasty Frozen Chips"
+                            Price = 51.19m,
+                            Title = "Practical Soft Mouse"
                         },
                         new
                         {
                             Id = 2,
                             BrandId = 3,
-                            CreationDate = new DateTime(2024, 11, 17, 17, 38, 21, 425, DateTimeKind.Local).AddTicks(2052),
-                            Description = "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
-                            Discount = 7.98m,
+                            CreationDate = new DateTime(2024, 11, 17, 17, 34, 10, 81, DateTimeKind.Local).AddTicks(2998),
+                            Description = "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+                            Discount = 1.70m,
                             IsDeleted = false,
-                            Price = 43.82m,
-                            Title = "Licensed Fresh Bacon"
+                            Price = 36.79m,
+                            Title = "Ergonomic Frozen Pizza"
                         });
                 });
 

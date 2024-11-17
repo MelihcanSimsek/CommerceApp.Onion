@@ -1,6 +1,7 @@
 using CommerceApp.Persistence;
 using CommerceApp.Application;
 using CommerceApp.Mapper;
+using CommerceApp.Application.Exceptions;
 
 
 namespace CommerceApp.Api
@@ -35,6 +36,8 @@ namespace CommerceApp.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseAuthorization();
 

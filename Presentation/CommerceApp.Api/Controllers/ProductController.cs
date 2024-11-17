@@ -1,4 +1,7 @@
 ﻿
+using CommerceApp.Application.Features.Products.Commands.CreateProduct;
+using CommerceApp.Application.Features.Products.Commands.DeleteProduct;
+using CommerceApp.Application.Features.Products.Commands.UpdateProduct;
 using CommerceApp.Application.Features.Products.Queries.GetAllProducts;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -21,5 +24,27 @@ namespace CommerceApp.Api.Controllers
         {
             return Ok(await mediator.Send(new GetAllProductsQueryRequest()));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(CreateProductCommandRequest request)
+        {
+            await mediator.Send(request);
+            return Created();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateProductCommandRequest request)
+        {
+            await mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(DeleteProductCommandRequest request)
+        {
+            await mediator.Send(request);
+            return Ok();
+        }
+
     }
 }
