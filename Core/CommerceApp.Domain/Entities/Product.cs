@@ -15,7 +15,7 @@ namespace CommerceApp.Domain.Entities
         public decimal Price { get; set; }
         public decimal Discount { get; set; }
         public virtual Brand Brand { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<ProductCategory> ProductCategories { get; set; }
 
         public Product()
         {

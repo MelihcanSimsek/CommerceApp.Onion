@@ -13,6 +13,7 @@ namespace CommerceApp.Application.Interfaces.Repositories
         Task AddRangeAsync(ICollection<T> entities);
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(T entity);
+        Task DeleteRangeAsync(ICollection<T> entities);
        
     }
 }

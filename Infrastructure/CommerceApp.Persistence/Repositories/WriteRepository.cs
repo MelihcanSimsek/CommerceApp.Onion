@@ -38,5 +38,10 @@ namespace CommerceApp.Persistence.Repositories
         {
             await Task.Run(() => Table.Remove(entity));
         }
+
+        public async Task DeleteRangeAsync(ICollection<T> entities)
+        {
+            await Task.Run(() => Table.RemoveRange(entities));
+        }
     }
 }
