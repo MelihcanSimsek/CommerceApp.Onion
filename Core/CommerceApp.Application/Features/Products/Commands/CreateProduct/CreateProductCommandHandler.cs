@@ -26,7 +26,7 @@ namespace CommerceApp.Application.Features.Products.Commands.CreateProduct
         public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             IList<Product> products = await unitOfWork.GetReadRepository<Product>().GetAllAsync();
-            await productRules.CheckProductTitleIsDuplicated(products, request.Title);
+            await productRules.CheckIsProductTitleDuplicate(products, request.Title);
 
             var product = mapper.Map<Product, CreateProductCommandRequest>(request);
             await unitOfWork.GetWriteRepository<Product>().AddAsync(product);

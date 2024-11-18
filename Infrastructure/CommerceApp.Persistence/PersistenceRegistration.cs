@@ -1,5 +1,6 @@
 ﻿using CommerceApp.Application.Interfaces.Repositories;
 using CommerceApp.Application.Interfaces.UnitOfWorks;
+using CommerceApp.Domain.Entities;
 using CommerceApp.Persistence.Context;
 using CommerceApp.Persistence.Repositories;
 using CommerceApp.Persistence.UnitOfWorks;
@@ -25,6 +26,18 @@ namespace CommerceApp.Persistence
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddIdentityCore<User>(opt =>
+            {
+                opt.Password.RequiredLength = 8;
+                opt.Password.RequireLowercase = true;
+                opt.Password.RequireUppercase = true;
+                opt.Password.RequireDigit = true;
+                opt.Password.RequireNonAlphanumeric = true;
+                opt.SignIn.RequireConfirmedEmail = false;
+            }).AddRoles<Role>()
+            .AddEntityFrameworkStores<BaseDbContext>();
+            
+            
             return services;
         }
     }
