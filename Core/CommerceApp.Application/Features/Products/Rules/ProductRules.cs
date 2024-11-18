@@ -11,7 +11,7 @@ namespace CommerceApp.Application.Features.Products.Rules
 {
     public class ProductRules : BaseRules
     {
-        public Task CheckProductTitleIsDuplicated(IList<Product> products, string requestProductTitle)
+        public Task CheckIsProductTitleDuplicate(IList<Product> products, string requestProductTitle)
         {
             if (products.Any(p => p.Title == requestProductTitle)) throw new ProductTitleDuplicatedException();
             return Task.CompletedTask;

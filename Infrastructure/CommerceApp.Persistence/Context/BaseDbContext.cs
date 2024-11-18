@@ -1,4 +1,5 @@
 ﻿using CommerceApp.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CommerceApp.Persistence.Context
 {
-    public class BaseDbContext : DbContext
+    public class BaseDbContext : IdentityDbContext<User,Role,Guid>
     {
         public BaseDbContext()
         {
