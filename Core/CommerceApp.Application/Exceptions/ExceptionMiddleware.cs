@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using SendGrid.Helpers.Errors.Model;
-using System.ComponentModel.DataAnnotations;
 
 namespace CommerceApp.Application.Exceptions
 {
@@ -25,10 +25,18 @@ namespace CommerceApp.Application.Exceptions
             context.Response.StatusCode = statusCode;
             context.Response.ContentType = "application/json";
 
+            if(exception.GetType() == typeof(ValidationException))
+            {
+                return context.Response.WriteAsync(new ExceptionModel()
+                {
+                    Errors = ((ValidationException)exception).Errors.Select(p => p.ErrorMessage),
+                    StatusCode = StatusCodes.Status400BadRequest
+                }.ToString());
+            }
+
             List<string> errors = new()
             {
                 $"Exception message : {exception.Message}",
-                $"Exception description : {exception.InnerException?.ToString()}"
             };
 
             return context.Response.WriteAsync(new ExceptionModel
