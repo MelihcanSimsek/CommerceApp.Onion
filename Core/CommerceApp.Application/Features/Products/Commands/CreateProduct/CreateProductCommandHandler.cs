@@ -1,4 +1,5 @@
-﻿using CommerceApp.Application.Interfaces.AutoMapper;
+﻿using CommerceApp.Application.Features.Products.Rules;
+using CommerceApp.Application.Interfaces.AutoMapper;
 using CommerceApp.Application.Interfaces.UnitOfWorks;
 using CommerceApp.Domain.Entities;
 using MediatR;
@@ -10,20 +11,23 @@ using System.Threading.Tasks;
 
 namespace CommerceApp.Application.Features.Products.Commands.CreateProduct
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest,Unit>
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
-
-        public CreateProductCommandHandler(IUnitOfWork unitOfWork,IMapper mapper)
+        private readonly ProductRules productRules;
+        public CreateProductCommandHandler(IUnitOfWork unitOfWork,IMapper mapper, ProductRules productRules)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
+            this.productRules = productRules;
         }
 
-
-        public async Task Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
+            IList<Product> products = await unitOfWork.GetReadRepository<Product>().GetAllAsync();
+            await productRules.CheckProductTitleIsDuplicated(products, request.Title);
+
             var product = mapper.Map<Product, CreateProductCommandRequest>(request);
             await unitOfWork.GetWriteRepository<Product>().AddAsync(product);
             if(await unitOfWork.SaveAsync() > 0)
@@ -34,8 +38,9 @@ namespace CommerceApp.Application.Features.Products.Commands.CreateProduct
                 
                 await unitOfWork.SaveAsync();
             }
-            else
-            throw new Exception("CreateProductCommandHandle statet exception");
+
+            return Unit.Value;
         }
+
     }
 }

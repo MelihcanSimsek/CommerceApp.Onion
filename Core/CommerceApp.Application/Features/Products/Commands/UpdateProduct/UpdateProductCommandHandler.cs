@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CommerceApp.Application.Features.Products.Commands.UpdateProduct
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest,Unit>
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
@@ -21,7 +21,7 @@ namespace CommerceApp.Application.Features.Products.Commands.UpdateProduct
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
-        public async Task Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
             var product = await unitOfWork.GetReadRepository<Product>().GetAsync(p => p.Id == request.Id && p.IsDeleted == false);
             if (product is null) throw new NotFoundException("Product not found");
@@ -40,6 +40,8 @@ namespace CommerceApp.Application.Features.Products.Commands.UpdateProduct
                     ProductId = request.Id
                 });
             await unitOfWork.SaveAsync();
+
+            return Unit.Value;
         }
     }
 }
