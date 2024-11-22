@@ -4,6 +4,7 @@ using CommerceApp.Application.Features.Products.Commands.DeleteProduct;
 using CommerceApp.Application.Features.Products.Commands.UpdateProduct;
 using CommerceApp.Application.Features.Products.Queries.GetAllProducts;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace CommerceApp.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
 

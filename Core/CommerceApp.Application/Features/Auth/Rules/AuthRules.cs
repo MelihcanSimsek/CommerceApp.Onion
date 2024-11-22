@@ -20,5 +20,15 @@ namespace CommerceApp.Application.Features.Auth.Rules
         {
             if (user is null || !passwordCheck) throw new EmailOrPasswordWrongExcepiton();
         }
+
+        public async Task ShouldUserRefreshTokenNotBeExpired(DateTime? expiryDate)
+        {
+            if (expiryDate <= DateTime.Now) throw new RefreshTokenShouldNotBeExpiredExcepiton();
+        }
+
+        public async Task ShouldEmailValidWhenRevoked(User? user)
+        {
+            if (user is null) throw new EmailNotValidException();
+        }
     }
 }
