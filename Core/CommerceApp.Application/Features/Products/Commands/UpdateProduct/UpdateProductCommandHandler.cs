@@ -1,7 +1,9 @@
-﻿using CommerceApp.Application.Interfaces.AutoMapper;
+﻿using CommerceApp.Application.Bases;
+using CommerceApp.Application.Interfaces.AutoMapper;
 using CommerceApp.Application.Interfaces.UnitOfWorks;
 using CommerceApp.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using SendGrid.Helpers.Errors.Model;
 using System;
 using System.Collections.Generic;
@@ -11,15 +13,10 @@ using System.Threading.Tasks;
 
 namespace CommerceApp.Application.Features.Products.Commands.UpdateProduct
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest,Unit>
+    public class UpdateProductCommandHandler : BaseHandler,IRequestHandler<UpdateProductCommandRequest,Unit>
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IMapper mapper;
-
-        public UpdateProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public UpdateProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper,IHttpContextAccessor httpContextAccessor):base(unitOfWork,mapper,httpContextAccessor)
         {
-            this.unitOfWork = unitOfWork;
-            this.mapper = mapper;
         }
         public async Task<Unit> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {

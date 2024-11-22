@@ -1,6 +1,9 @@
-﻿using CommerceApp.Application.Interfaces.UnitOfWorks;
+﻿using CommerceApp.Application.Bases;
+using CommerceApp.Application.Interfaces.AutoMapper;
+using CommerceApp.Application.Interfaces.UnitOfWorks;
 using CommerceApp.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using SendGrid.Helpers.Errors.Model;
 using System;
 using System.Collections.Generic;
@@ -10,13 +13,11 @@ using System.Threading.Tasks;
 
 namespace CommerceApp.Application.Features.Products.Commands.DeleteProduct
 {
-    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommandRequest, Unit>
+    public class DeleteProductCommandHandler : BaseHandler,IRequestHandler<DeleteProductCommandRequest, Unit>
     {
-        private readonly IUnitOfWork unitOfWork;
 
-        public DeleteProductCommandHandler(IUnitOfWork unitOfWork)
+        public DeleteProductCommandHandler(IUnitOfWork unitOfWork,IMapper mapper,IHttpContextAccessor httpContextAccessor):base(unitOfWork,mapper,httpContextAccessor)
         {
-            this.unitOfWork = unitOfWork;
         }
 
         public async Task<Unit> Handle(DeleteProductCommandRequest request, CancellationToken cancellationToken)
