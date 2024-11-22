@@ -1,4 +1,6 @@
-﻿using CommerceApp.Application.Interfaces.Tokens;
+﻿using CommerceApp.Application.Interfaces.RedisCache;
+using CommerceApp.Application.Interfaces.Tokens;
+using CommerceApp.Infrastructure.RedisCache;
 using CommerceApp.Infrastructure.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +21,9 @@ namespace CommerceApp.Infrastructure
             services.Configure<TokenSettings>(configuration.GetSection("TokenOptions"));
             services.AddTransient<ITokenService, TokenService>();
 
+            services.Configure<RedisSettings>(configuration.GetSection("RedisSettings"));
+            services.AddTransient<IRedisCacheService, RedisCacheService>();
+
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -37,6 +42,12 @@ namespace CommerceApp.Infrastructure
                     ValidAudience = configuration["TokenOptions:Audience"],
                     ClockSkew = TimeSpan.Zero
                 };
+            });
+
+            services.AddStackExchangeRedisCache(opt =>
+            {
+                opt.Configuration = configuration["RedisSettings:ConnectionString"];
+                opt.InstanceName = configuration["RedisSettings:InstanceName"];
             });
 
             return services;

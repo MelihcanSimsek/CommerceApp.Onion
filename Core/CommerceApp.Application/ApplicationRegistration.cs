@@ -2,6 +2,7 @@
 using CommerceApp.Application.Behaviours;
 using CommerceApp.Application.Exceptions;
 using CommerceApp.Application.Features.Products.Rules;
+using CommerceApp.Application.Interfaces.RedisCache;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,7 @@ namespace CommerceApp.Application
 
             services.AddTransient<ExceptionMiddleware>();
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RedisBehavior<,>));
             services.AddRulesFromAssemblyContaining(assembly, typeof(BaseRules));
             return services;
         }
