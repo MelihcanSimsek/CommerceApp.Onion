@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CommerceApp.Application.Features.Products.Exceptions
 {
-    public class ProductTitleDuplicatedException : BaseExceptions
+    public class ProductTitleDuplicatedException : BaseException
     {
         public ProductTitleDuplicatedException() : base(Messages.ProductTitleCanNotBeDuplicated)
         {

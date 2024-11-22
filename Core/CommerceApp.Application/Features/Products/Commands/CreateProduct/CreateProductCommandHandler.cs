@@ -1,8 +1,10 @@
-﻿using CommerceApp.Application.Features.Products.Rules;
+﻿using CommerceApp.Application.Bases;
+using CommerceApp.Application.Features.Products.Rules;
 using CommerceApp.Application.Interfaces.AutoMapper;
 using CommerceApp.Application.Interfaces.UnitOfWorks;
 using CommerceApp.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +13,11 @@ using System.Threading.Tasks;
 
 namespace CommerceApp.Application.Features.Products.Commands.CreateProduct
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest,Unit>
+    public class CreateProductCommandHandler : BaseHandler, IRequestHandler<CreateProductCommandRequest,Unit>
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IMapper mapper;
         private readonly ProductRules productRules;
-        public CreateProductCommandHandler(IUnitOfWork unitOfWork,IMapper mapper, ProductRules productRules)
+        public CreateProductCommandHandler(ProductRules productRules, IUnitOfWork unitOfWork,IMapper mapper, IHttpContextAccessor httpContextAccessor):base(unitOfWork,mapper,httpContextAccessor)
         {
-            this.unitOfWork = unitOfWork;
-            this.mapper = mapper;
             this.productRules = productRules;
         }
 

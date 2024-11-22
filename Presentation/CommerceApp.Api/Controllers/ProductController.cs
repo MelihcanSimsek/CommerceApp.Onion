@@ -13,7 +13,9 @@ namespace CommerceApp.Api.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+
         private readonly IMediator mediator;
+
         public ProductController(IMediator mediator)
         {
             this.mediator = mediator;
