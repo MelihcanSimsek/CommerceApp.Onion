@@ -33,6 +33,10 @@ namespace CommerceApp.Application.Behaviours
                     await redisCacheService.SetAsync<TResponse>(cacheKey, response, DateTime.Now.AddMinutes(cacheTime));
 
                 return response;
+            } else if(request is ICacheRemoverCommand command)
+            {
+                string cacheKey = command.CacheKey;
+                await redisCacheService.RemoveAsync(cacheKey);
             }
 
 

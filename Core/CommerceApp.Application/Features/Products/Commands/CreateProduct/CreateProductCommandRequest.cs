@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CommerceApp.Application.Interfaces.RedisCache;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CommerceApp.Application.Features.Products.Commands.CreateProduct
 {
-    public class CreateProductCommandRequest:IRequest<Unit>
+    public class CreateProductCommandRequest:IRequest<Unit>,ICacheRemoverCommand
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -15,5 +16,6 @@ namespace CommerceApp.Application.Features.Products.Commands.CreateProduct
         public decimal Price { get; set; }
         public decimal Discount { get; set; }
         public List<int> CategoryIds { get; set; }
+        public string CacheKey => "GetAllProducts";
     }
 }

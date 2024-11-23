@@ -32,6 +32,12 @@ namespace CommerceApp.Infrastructure.RedisCache
             return default;
         }
 
+        public Task RemoveAsync(string key)
+        {
+            database.KeyDeleteAsync(key);
+            return Task.CompletedTask;
+        }
+
         public Task SetAsync<T>(string key, T value, DateTime? expirationTime = null)
         {
             TimeSpan timeUnitExpiration = expirationTime.Value - DateTime.Now;

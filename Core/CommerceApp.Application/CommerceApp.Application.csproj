@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <Folder Include="Features\Auth\Queries\" />
+    <Folder Include="Features\Categories\Queries\" />
+    <Folder Include="Features\Details\Queries\GetAllDetails\" />
   </ItemGroup>
 
 </Project>

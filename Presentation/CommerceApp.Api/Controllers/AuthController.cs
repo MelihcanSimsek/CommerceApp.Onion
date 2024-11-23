@@ -1,9 +1,11 @@
-﻿using CommerceApp.Application.Features.Auth.Commands.Login;
+﻿using CommerceApp.Application.Features.Auth.Commands.ChangePassword;
+using CommerceApp.Application.Features.Auth.Commands.Login;
 using CommerceApp.Application.Features.Auth.Commands.RefreshToken;
 using CommerceApp.Application.Features.Auth.Commands.RegisterCommand;
 using CommerceApp.Application.Features.Auth.Commands.Revoke;
 using CommerceApp.Application.Features.Auth.Commands.RevokeAll;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,6 +54,14 @@ namespace CommerceApp.Api.Controllers
         public async Task<IActionResult> RevokeAll()
         {
             await mediator.Send(new RevokeAllCommandRequest());
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword(ChangePasswordCommandRequest request)
+        {
+            await mediator.Send(request);
             return Ok();
         }
     }

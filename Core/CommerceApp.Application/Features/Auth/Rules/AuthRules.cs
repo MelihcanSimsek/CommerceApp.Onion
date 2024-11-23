@@ -1,6 +1,7 @@
 ﻿using CommerceApp.Application.Bases;
 using CommerceApp.Application.Features.Auth.Exceptions;
 using CommerceApp.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,21 @@ namespace CommerceApp.Application.Features.Auth.Rules
         public async Task ShouldEmailValidWhenRevoked(User? user)
         {
             if (user is null) throw new EmailNotValidException();
+        }
+
+        public async Task ShouldEmailValidWhenChangingPassword(User? user)
+        {
+            if (user is null) throw new EmailNotValidException();
+        }
+
+        public async Task ShouldCurrentPasswordIsCorrectWhenPasswordChanging(bool checkPassword)
+        {
+            if (!checkPassword) throw new CurrentPasswordNotValidExcepiton();
+        }
+
+        public async Task ShouldPasswordChangingSucceeded(IdentityResult result)
+        {
+            if (!result.Succeeded) throw new PasswordChangeException();
         }
     }
 }
